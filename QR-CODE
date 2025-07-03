@@ -1,39 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Staff QR Access</title>
+  <title>Staff Discount Access</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 40px; }
-    .hidden { display: none; }
-    .flashing {
-      animation: flash 1s infinite;
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f8f8f8;
+    }
+    input, button {
       padding: 10px;
-      border-radius: 8px;
-      background-color: #ffdddd;
+      font-size: 16px;
+    }
+    .hidden {
+      display: none;
+    }
+    .flashing {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 20px 0;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      animation: flash 1s infinite;
     }
     @keyframes flash {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.4; }
     }
+    img {
+      max-width: 300px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
-  <h2>Enter PIN to Access</h2>
-  <input type="password" id="pin" placeholder="PIN">
-  <button onclick="checkPin()">Submit</button>
+  <h2>Enter Staff PIN</h2>
+  <input type="password" id="pin" placeholder="Enter PIN">
+  <button onclick="unlock()">Unlock</button>
 
-  <div id="secureContent" class="hidden">
-    <p class="flashing">Verified Access - Staff Only</p>
-    <img src="https://example.com/your-qr.png" alt="QR Code" width="200">
+  <div id="qr-section" class="hidden">
+    <div class="flashing">STAFF VERIFIED</div>
+    <img src="https://imgur.com/a/ZxptD9G" alt="Staff QR Code">
   </div>
 
   <script>
-    function checkPin() {
-      const input = document.getElementById('pin').value;
-      if (input === '1234') {  // Change this PIN
-        document.getElementById('secureContent').classList.remove('hidden');
+    const correctPin = "5454"; // <- Replace with your real PIN
+    function unlock() {
+      const pin = document.getElementById("pin").value;
+      if (pin === correctPin) {
+        document.getElementById("qr-section").classList.remove("hidden");
       } else {
-        alert('Incorrect PIN');
+        alert("Incorrect PIN");
       }
     }
   </script>
