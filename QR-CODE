@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Staff QR Access</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 40px; }
+    .hidden { display: none; }
+    .flashing {
+      animation: flash 1s infinite;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #ffdddd;
+    }
+    @keyframes flash {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+</head>
+<body>
+  <h2>Enter PIN to Access</h2>
+  <input type="password" id="pin" placeholder="PIN">
+  <button onclick="checkPin()">Submit</button>
+
+  <div id="secureContent" class="hidden">
+    <p class="flashing">Verified Access - Staff Only</p>
+    <img src="https://example.com/your-qr.png" alt="QR Code" width="200">
+  </div>
+
+  <script>
+    function checkPin() {
+      const input = document.getElementById('pin').value;
+      if (input === '1234') {  // Change this PIN
+        document.getElementById('secureContent').classList.remove('hidden');
+      } else {
+        alert('Incorrect PIN');
+      }
+    }
+  </script>
+</body>
+</html>
